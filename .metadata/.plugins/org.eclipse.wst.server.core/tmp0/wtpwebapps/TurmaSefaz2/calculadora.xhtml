@@ -1,0 +1,98 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui">
+    <h:head>
+		<style type="text/css">
+		.botao{width:70px;height:46px;background-color:#000!important;}
+		.ui-widget-content{background-color:#000;}
+		.display{background:#000;width:30px;height:70px;margin-left:7px;margin-top:5px;text-align:right;}
+		.textarea{font-size:23px!important;}
+		.corrigir span{padding:0px!important;font-size:17px}
+		</style>
+    </h:head>
+    <h:body>
+
+<p:layout style="width:350px;height:444px;margin:auto;margin-top:50;padding:0px" >
+ 
+  <p:layoutUnit position="center">
+	 <h:form>
+  <div  class="display" >
+     <p:inputTextarea rows="2" disabled="true" cols="25" value="#{CalculadoraBean.display}" class="textarea" update="#{CalculadoraBean.display}" queryDelay="750" minQueryLength="4" />
+  </div>
+	 	<div class="ui-g">
+		    <div class="ui-g-3">
+		       <p:commandButton  value="C" id="addC" action="#{CalculadoraBean.addC}" class="botao" update="@form"  />
+		    </div>
+		    <div class="ui-g-3">
+		      <p:commandButton value="()" id="addParentese" action="#{CalculadoraBean.addParentese}" class="botao" update="@form"  />	
+		    </div>
+		    <div class="ui-g-3">
+		     <p:commandButton value="%" id="addPencentual" action="#{CalculadoraBean.calcular}" class="botao" update="@form"  />
+		    </div>
+		    <div class="ui-g-3">
+		     <p:commandButton value="/" id="addMenosDivisao" action="#{CalculadoraBean.addDivisao}" class="botao" update="@form"  />	
+		    </div>
+		</div>
+			<div class="ui-g">
+		    <div class="ui-g-3">
+		       <p:commandButton value="7" id="add7" action="#{CalculadoraBean.add7}" class="botao" update="@form"  />
+		    </div>
+		    <div class="ui-g-3">
+		      <p:commandButton value="8" id="add8" action="#{CalculadoraBean.add8}" class="botao" update="@form" />	
+		    </div>
+		    <div class="ui-g-3">
+		     <p:commandButton value="9" id="add9" action="#{CalculadoraBean.add9}" class="botao" update="@form"  />
+		    </div>
+		    <div class="ui-g-3">
+		     <p:commandButton value="*" id="addMultiplicacao" action="#{CalculadoraBean.addMultiplicacao}" class="botao" update="@form"  />	
+		    </div>
+		</div>
+		<div class="ui-g">
+		    <div class="ui-g-3">
+		       <p:commandButton value="4" id="add4" action="#{CalculadoraBean.add4}" class="botao" update="@form"  />
+		    </div>
+		    <div class="ui-g-3">
+		      <p:commandButton value="5" id="add5" action="#{CalculadoraBean.add5}" class="botao" update="@form" />	
+		    </div>
+		    <div class="ui-g-3">
+		     <p:commandButton value="6" id="add6" action="#{CalculadoraBean.add6}" class="botao" update="@form"  />
+		    </div>
+		    <div class="ui-g-3">
+		     <p:commandButton value="-" id="addSubtracao" action="#{CalculadoraBean.addSubtracao}" class="botao" update="@form"  />	
+		    </div>
+		</div>
+		<div class="ui-g">
+		    <div class="ui-g-3">
+		       <p:commandButton value="1" id="add1" action="#{CalculadoraBean.add1}" class="botao"  update="@form"  />
+		    </div>
+		    <div class="ui-g-3">
+		      <p:commandButton value="2" id="add2" action="#{CalculadoraBean.add2}" class="botao" update="@form" />	
+		    </div>
+		    <div class="ui-g-3">
+		     <p:commandButton value="3" id="add3" action="#{CalculadoraBean.add3}" class="botao" update="@form"  />
+		    </div>
+		    <div class="ui-g-3">
+		     <p:commandButton value="+" id="addMais" action="#{CalculadoraBean.addSoma}" class="botao" update="@form"  />	
+		    </div>
+		 </div>
+		 <div class="ui-g">
+		    <div class="ui-g-3">
+		       <p:commandButton value="corrigir" id="corrigir" action="#{CalculadoraBean.corrigir}" class="botao corrigir" style="padding:0px;"  update="@form"  />
+		       </div>
+		    <div class="ui-g-3">
+		      <p:commandButton value="0" id="add0" action="#{CalculadoraBean.add0}" class="botao" update="@form"  />	
+		    </div>
+		    <div class="ui-g-3">
+		     <p:commandButton value="." id="addPonto" action="#{CalculadoraBean.addPonto}" class="botao" update="@form"  />
+		    </div>
+		    <div class="ui-g-3">
+		     <p:commandButton value="=" id="addIgual" action="#{CalculadoraBean.calcular}" class="botao" update="@form"  />	
+		    </div>
+		</div>
+	</h:form>
+   </p:layoutUnit>
+</p:layout>
+ 
+    </h:body>
+</html>

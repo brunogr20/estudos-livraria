@@ -1,0 +1,123 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head> 
+	<link rel="stylesheet" type="text/css"
+		href="#{facesContext.externalContext.requestContextPath}/styles/main.css"
+		media="screen" />
+<h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />
+</h:head>
+
+<h:body>
+	<h:form>
+		<ui:include src="/templates/menu.xhtml" />
+		<!--p:graphicImage value="/storage/edit-tools.png" /-->
+		<h3
+			style="margin: 0px; margin-left: 9px; font-family: Arial, sans-serif;">Jogos</h3>
+
+		<div class="ui-g">
+			<div class="ui-g-6">
+				<p:dataTable var="jogo" value="#{JogosBean.jogos}" 
+					widgetVar="tableGrid" rowIndexVar="rowIdx"
+					emptyMessage="Nenhum resultado foi encontrado"
+					filteredValue="#{JogosBean.filteredItens}"
+					 globalFilterFunction="#{JogosBean.globalFilterFunction}"
+					>
+					<f:facet name="header">
+						<p:outputPanel>
+							<p:commandButton value="Novo" action="#{JogosBean.create}" update="@form"
+								id="newRecord" styleClass="ui-priority-primary" />
+							<div>
+								<h:outputText value="Buscar: " />
+								<p:inputText id="globalFilter"
+									onkeyup="PF('tableGrid').filter()" style="width:150px"
+									placeholder="" />
+							</div>
+						</p:outputPanel>
+					</f:facet>
+					<p:column headerText="Id" style="width:50px;">
+						<h:outputText value="#{jogo.id}" />
+					</p:column>
+
+					<p:column headerText="Nome">
+						<h:outputText value="#{jogo.nome}" />
+					</p:column>
+
+					<p:column headerText="Descrição">
+						<h:outputText value="#{jogo.descricao}" />
+					</p:column>
+					<!-- p:column style="width:20px">
+						<p:rowEditor />
+					</p:column-->
+					<p:column style="width:35px;text-align: center">
+						<p:commandButton action="#{JogosBean.edit}" icon="pi pi-pencil" update="@form"	title="Editar">
+							<f:setPropertyActionListener value="#{rowIdx}"  target="#{JogosBean.indexSelected}" />
+						</p:commandButton>
+					</p:column>
+					<p:column style="width:35px;text-align: center">
+					<p:commandButton action="#{JogosBean.delete}" icon="pi pi-trash" update="@form"	title="Deletar">
+							<f:setPropertyActionListener value="#{rowIdx}"  target="#{JogosBean.indexSelected}" />
+							<p:confirm header="Confirmation" message="Deseja deletar esse item?" icon="pi pi-exclamation-triangle" />
+					</p:commandButton>
+					</p:column>
+				</p:dataTable>
+			</div>
+			<div class="ui-g-6">
+				<p:tabView scrollable="true">
+					<p:tab title="#{JogosBean.titleTabFrom}">
+
+						<p:panelGrid columns="2" style="width:100%">
+							<p:outputLabel value="Nome*: " />
+							<p:inputText class="input" value="#{JogosBean.jogo.nome}" />
+							<p:outputLabel value="Tamanho*: " />
+							<p:inputText class="input" value="#{JogosBean.jogo.tamanho}" />
+							<p:outputLabel value="Descrição: " />
+							<p:inputTextarea class="input"
+								value="#{JogosBean.jogo.descricao}" rows="2" cols="40" />
+						</p:panelGrid>
+						<hr />
+						<p:commandButton value="Salvar" action="#{JogosBean.save}"
+							id="buttonSalvar1" update="@form"
+							style="width:100px;margin-right:10px;"
+							styleClass="ui-priority-primary" />
+						<p:commandButton value="Limpar" id="buttonClean1" update="@form"
+							style="width:100px;margin-right:10px;" action="#{JogosBean.cleanForm}"
+							styleClass="ui-priority-primary" />
+
+					</p:tab>
+					<p:tab title="Plataformas">
+
+					     <p:selectManyCheckbox id="grid2" value="#{JogosBean.selectedCities2}" layout="responsive" columns="1">
+					        <f:selectItems value="#{JogosBean.cities}" var="city" itemLabel="#{city}" itemValue="#{city}" />
+					    </p:selectManyCheckbox>
+					 		<!--
+						<p:panelGrid columns="1" style="width:100%">
+					 		<p:selectBooleanCheckbox id="checkbox" itemLabel="Xbox" />
+							<p:selectBooleanCheckbox id="checkbox2" itemLabel="Play" />
+						</p:panelGrid>
+							-->
+						<hr />
+						<p:commandButton value="Salvar" action="#{JogosBean.save}"
+							id="buttonSalvar2" update="@form"
+							style="width:100px;margin-right:10px;"
+							styleClass="ui-priority-primary" />
+						<p:commandButton value="Limpar" id="buttonClean2" action="#{JogosBean.cleanForm}" update="@form"
+							style="width:100px;margin-right:10px;"
+							styleClass="ui-priority-primary" />
+					</p:tab>
+				</p:tabView>
+
+			</div>
+		</div>
+		
+    <p:growl id="message" showDetail="true" />
+    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+        <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
+        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="pi pi-times" />
+    </p:confirmDialog>  
+	</h:form>
+
+</h:body>
+</html>

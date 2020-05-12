@@ -1,0 +1,58 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui">
+    <h:head>
+    <style>
+      .input{font-weight:bold;width:100%}
+    </style>
+    </h:head>
+    <h:body>
+    
+<p:breadCrumb>
+    <p:menuitem value="" url="#" />
+    <p:menuitem value="Jogos" url="jogos.xhtml" />
+    <p:menuitem value="Prataformas" url="plataformas.xhtml" />
+</p:breadCrumb>
+<br/>
+
+<div class="ui-g" style="width:90%;margin:auto">
+     <div class="ui-g-6">
+     	 <p:dataTable var="jogo" value="#{JogosBean.jogos}">
+	    <p:column headerText="Id">
+	        <h:outputText value="#{jogo.id}" />
+	    </p:column>
+	 
+	    <p:column headerText="Nome">
+	        <h:outputText value="#{jogo.nome}" />
+	    </p:column>
+	 
+	    <p:column headerText="Descrição">
+	        <h:outputText value="#{jogo.descricao}" />
+	    </p:column>
+
+	</p:dataTable>
+    </div>
+     <div class="ui-g-6">
+        <h:form>
+			<p:tabView scrollable="true">
+	        <p:tab title="Criar">
+	        <p:panelGrid columns="2" style="width:100%">
+				<p:outputLabel value="Nome*: " />
+				<p:inputText  class="input" />
+				<p:outputLabel value="Descrição: " />
+				<p:inputTextarea class="input" rows="2" cols="40" />
+			</p:panelGrid>
+		    <hr/>
+	        <p:commandButton value="Salvar" id="cadButton" update="@form" style="width:100px;margin-right:20px;" styleClass="ui-priority-primary" />
+	        </p:tab>
+
+            </p:tabView>
+ 
+		</h:form>
+    </div>
+</div>
+
+
+    </h:body>
+</html>
